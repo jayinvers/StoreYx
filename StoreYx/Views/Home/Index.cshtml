@@ -1,0 +1,172 @@
+﻿@model StoreYx.Models.ListModel
+@{
+
+    ViewData["SiteName"] = "广州云想门店信息技术有限公司";
+    ViewData["Beian"] = "粤ICP备2021091869号";
+    ViewData["Address"] = "中国广东省广州市番禺区海印星玥写字楼2栋406室";
+    ViewData["BusinessLicense"] = "91440101MA9XU41Q7A";
+    ViewData["Tel"] = "13806699900";
+    ViewData["Email"] = "18195360@qq.com";
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首页 - @ViewData["SiteName"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MyWebSite.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container shadow mt-4 p-0 border border-top bg-white">
+
+
+
+        <header  style="background-color:#057B85; ">
+            <nav class="mainnav navbar navbar-expand-lg navbar-toggleable-lg navbar-dark pb-4">
+                <div class="container">
+                    <a class="navbar-brand ms-2" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.svg" width="200" height="36" class="img-fluid" /></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse">
+                        <partial name="_Nav" />
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="banner p-0">
+            <div class="p-4 p-md-5 text-white-50 bg-image position-relative" style="background: url('/images/bg.svg') no-repeat center;background-size:cover; height: 320px; background-color:#057B85">
+                <div class="px-0 text-center">
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="featured-3">
+            <h1 class="text-center fs-4 pt-3 text-secondary">产品中心</h1>
+            <div class="text-center text-secondary">- 服务创造价值、存在造就未来 -</div>
+            <div class="row g-4 p-4 row-cols-1 row-cols-lg-3">
+
+                        @foreach (var item in Model.ServiceModel)
+    {
+                <div class="feature col px-3">
+                    <div class="px-lg-3 py-lg-0 px-5 text-sm-center">
+                        <img src="@item.Pic" class="rounded img-fluid" alt="@Html.DisplayFor(modelItem => item.Title)">
+                    </div>
+                    <h4 class="fs-6 mt-2 text-center">@Html.DisplayFor(modelItem => item.Title)</h4>
+                    <p class="text-secondary px-3">
+                        @Html.DisplayFor(modelItem => item.Description)
+                       
+                    </p>
+                </div>
+                }
+
+
+            </div>
+        </div>
+
+        <div class="container g-0" id="about">
+            <div class="bg-light py-4">
+                <h1 class="text-center fs-4 pt-3  text-info">公司简介</h1>
+                <div class="text-center text-secondary">- 服装零售「一站式」服务商 -</div>
+                <div class="text-start p-3 lh-lg w-75 mx-auto  text-secondary">
+                 
+                    <p>
+                       
+
+                            @Model.PageModel.Description
+                        
+
+                            
+                        
+                        
+                    </p>
+                </div>
+                <div class="text-center"><a href="/about">查看更多</a></div>
+            </div>
+        </div>
+
+        <div class="container" id="news">
+            <div class="py-4">
+                <h1 class="text-center text-warning fs-4 pt-3">新闻中心</h1>
+                <div class="text-center text-secondary">- 了解最新行业资讯与公司动态 -</div>
+                <div class="row mb-2 mx-4 px-md-5  text-secondary">
+
+                        @foreach (var item in Model.ArticleModel)
+    {
+                    <div class="col-md-6">
+                        <div class="row g-5 overflow-hidden flex-md-row h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+
+                                <h3 class="mb-0 fs-5">@Html.DisplayFor(modelItem => item.Title)</h3>
+                                <div class="mb-1 text-muted">@Html.DisplayFor(modelItem => item.Description)</div>
+                                <p class="card-text mb-auto">@Html.DisplayFor(modelItem => item.CreatedAt)</p>
+                                <a asp-area="" asp-controller="News" asp-action="Details" asp-route-id="@item?.Id" class="stretched-link  mt-2">继续阅读</a>
+                            </div>
+                        </div>
+                    </div>
+
+        }
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-0 pt-5 pb-5 fs-6 justify-content-md-center messagebox">
+            <div class="col-3 text-white text-end lh-base pe-3">
+                <h1 class="fs-4">Leave a message</h1>
+                <p class="opacity-75">如有任何相关问题,敬请留言至此处. </p>
+                <p class="opacity-75">云想的相关社交媒体:</p>
+
+
+            </div>
+            <div class="col-7">
+                <form asp-controller="Contact" asp-action="LeaveMessage" method="post">
+                    <div class="pb-4 pt-2 row g-0">
+                        <div class="form-floating col pe-4">
+                            <input type="email" class="form-control" id="Email" name="Email" placeholder="name@example.com">
+                            <label for="Email">Email 地址</label>
+                        </div>
+                        <div class="form-floating col">
+                            <input type="text" class="form-control" id="FullName" name="FullName" placeholder="Your Name">
+                            <label for="FullName">您的名字</label>
+                        </div>
+                    </div>
+                    <div class="pb-4 form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="Message" name="Message" style="height: 100px"></textarea>
+                        <label for="Message">您的讯息</label>
+                    </div>
+                    <div class="pb-4"><button type="submit" class="btn btn-light text-uppercase">发讯息给云想</button></div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <footer class="lh-lg mt-4 text-muted">
+        <div class="container text-center">
+            <div>
+                &copy; 2022 - @ViewData["SiteName"]. Power by ASP.NET 6.0
+            </div>
+            <div>
+                备案号码：<a href="http://beian.miit.gov.cn/" target="_blank">@ViewData["Beian"]</a> 地址: @ViewData["Address"]
+            </div>
+            <div>
+                电话：@ViewData["Tel"] Email: @ViewData["Email"]
+            </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+</body>
+
+</html>

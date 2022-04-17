@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["SiteName"] = "广州云想门店信息技术有限公司";
+    ViewData["Beian"] = "粤ICP备2021091869号";
+    ViewData["Address"] = "中国广东省广州市番禺区海印星玥写字楼2栋406室";
+    ViewData["BusinessLicense"] = "91440101MA9XU41Q7A";
+    ViewData["Tel"] = "13806699900";
+    ViewData["Email"] = "18195360@qq.com";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @ViewData["SiteName"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container shadow mt-4 p-0 border border-top bg-white">
+
+
+        <header>
+            <nav class="mainnav navbar navbar-expand-lg navbar-toggleable-lg navbar-light">
+                <div class="container">
+                    <a class="navbar-brand ms-2" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo-dark.svg" width="200" height="36" class="img-fluid" /></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse">
+                        <partial name="_Nav" />
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        @RenderBody()
+    </div>
+    <footer class="lh-lg mt-4 text-muted">
+        <div class="container text-center">
+            <div>
+                &copy; 2022 - @ViewData["SiteName"]. Power by ASP.NET 6.0
+            </div>
+            <div>
+                备案号码：<a href="http://beian.miit.gov.cn/" target="_blank">@ViewData["Beian"]</a> 地址: @ViewData["Address"]
+            </div>
+            <div>
+                电话：@ViewData["Tel"] Email: @ViewData["Email"]
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

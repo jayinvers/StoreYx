@@ -1,0 +1,56 @@
+﻿@model StoreYx.Models.Service
+
+@{
+    ViewData["Title"] = "修改产品或服务";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">@ViewData["Title"]</h1>
+</div>
+<div class="row">
+    <div class="col">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group mb-3">
+                <label class="form-label" for="Title">标题</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label" for="Description">摘要</label><span asp-validation-for="Description" class="text-danger"></span>
+                <textarea asp-for="Description" class="form-control" rows="3" type="text" id="BodyInputField">
+                </textarea>
+            </div>
+
+             <div class="form-group mb-3 flex-fill">
+                <label for="Thumbnail" class="form-label">缩略图</label>
+                <input asp-for="Pic" class="form-control" />
+                <span asp-validation-for="Pic" class="text-danger"></span>
+            </div>
+
+                        <link rel="stylesheet" href="/editormd/css/editormd.css" />
+            <div class="form-group mb-3">
+                <label class="form-label" for="Body">正文 (Markdown 格式)</label> <span asp-validation-for="Content" class="text-danger"></span>
+                <div id="editor">
+                    <textarea asp-for="Content" style="display:none;" type="text" id="BodyInputField">
+                </textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="保存" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+    @{
+    await Html.RenderPartialAsync("_EditormdPartial");
+}
+}

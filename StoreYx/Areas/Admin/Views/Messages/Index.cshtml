@@ -1,0 +1,55 @@
+﻿@model IEnumerable<StoreYx.Models.Message>
+
+@{
+    ViewData["Title"] = "留言管理";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">@ViewData["Title"]</h1>
+
+
+
+
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th width="120">
+                邮箱
+            </th>
+            <th width="80">
+                姓名
+            </th>
+                        <th>
+                正文
+            </th>
+            <th width="100">
+                时间
+            </th>
+            <th width="160">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Email)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+                        <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+                <td>
+                    
+                    <a asp-action="Delete" asp-route-id="@item.Id">删除</a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

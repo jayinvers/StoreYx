@@ -1,0 +1,36 @@
+﻿@model IEnumerable<StoreYx.Models.Service>
+
+@{
+    ViewData["Title"] = "产品与服务";
+    ViewData["banner"] = "服务创造价值、存在造就未来";
+}
+<partial name="_Banner" />
+<div class="main">
+    <div class="row justify-content-md-center">
+        <div class="col-9">
+            <div class="p-4 text-black bg-light lh-base mb-5 text-black-50">
+            广州云想秉承“顾客至上，锐意进取”的经营理念，坚持“客户第一”的原则为广大客户提供优质的服务。   
+            </div>
+
+        @foreach (var item in Model)
+        {
+
+            <div class="row item justify-content-md-center mb-5 lh-base">
+                <div class="col-5">
+                    <img class="img-fluid shadow" src="@item.Pic" />
+                </div>
+                <div class="col-5">
+                    <h3 class="lh-lg fs-4 text-center">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </h3>
+                    @Html.DisplayFor(modelItem => item.Description)
+                    <div>
+                        <a asp-action="Details" asp-route-id="@item?.Id">
+                            查看详情
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

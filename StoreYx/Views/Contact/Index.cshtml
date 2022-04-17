@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "联系我们";
+    ViewData["Banner"] = "您的建议对我们十分重要";
+}
+<partial name="_Banner" />
+<div class="main">
+    <div class="row g-0 justify-content-md-center mb-5">
+        <div class="col-9">
+            <div class="content fs-4 lh-base">
+                <h1 class="text-center">联系我们</h1>
+                <p>如果您对我们的产品或服务有任何相关疑问,请通过以下联系方式咨询我们.</p>
+                <p>客服时间为: 10:00 - 18:00 </p>
+                <p>服务专员: 杨先生 </p>
+                <p>联系热线: 13806699900  </p>
+                <p>电子邮箱: 18195360@qq.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-0 pt-5 pb-5 fs-6 justify-content-md-center messagebox">
+        <div class="col-3 text-white text-end lh-base pe-3">
+            <h1 class="fs-4">Leave a message</h1>
+            <p class="opacity-75">如有任何相关问题,敬请留言至此处. </p>
+            <p class="opacity-75">云想的相关社交媒体:</p>
+
+
+        </div>
+        <div class="col-7">
+            <form asp-controller="Contact" asp-action="LeaveMessage" method="post">
+                <div class="pb-4 pt-2 row g-0">
+                    <div class="form-floating col pe-4">
+                        <input type="email" class="form-control" id="Email" name="Email" placeholder="name@example.com">
+                        <label for="Email">Email 地址</label>
+                    </div>
+                    <div class="form-floating col">
+                        <input type="text" class="form-control" id="FullName" name="FullName" placeholder="Your Name">
+                        <label for="FullName">您的名字</label>
+                    </div>
+                </div>
+                <div class="pb-4 form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="Message" name="Message" style="height: 100px"></textarea>
+                    <label for="Message">您的讯息</label>
+                </div>
+                <div class="pb-4"><button type="submit" class="btn btn-light text-uppercase">发讯息给云想</button></div>
+            </form>
+        </div>
+    </div>
+</div>

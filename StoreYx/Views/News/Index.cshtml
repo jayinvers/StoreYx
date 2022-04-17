@@ -1,0 +1,34 @@
+﻿@model IEnumerable<StoreYx.Models.Article>
+
+@{
+    ViewData["Title"] = "新闻中心";
+    ViewData["Banner"] = "了解最新公司动态及行业资讯";
+}
+<partial name="_Banner" />
+<div class="main">
+    <div class="row justify-content-md-center">
+        <div class="col-9">
+            <div class="p-4 text-black bg-light fs-5 lh-base mb-5 text-black-50">
+                
+            云想是一家从事软件开发与服装门店服务的企业,致力于零售门店提供各种解决方案。我们秉承“顾客至上，锐意进取”的经营理念，坚持“客户第一”的原则为广大客户提供高质量的服务。
+            </div>
+        </div>
+        <div class="row item justify-content-md-center mb-5 lh-base">
+            @foreach (var item in Model)
+            {
+                <div class="col-9 mb-4">
+                    <h2 class="display-7">
+                        <a asp-action="Details" asp-route-id="@item?.Id">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </a>
+                    </h2>
+                    <div class="fs-5 lh-base"> @Html.DisplayFor(modelItem => item.Description)</div>
+                </div>
+
+
+            }
+        </div>
+    </div>
+</div>
+
+

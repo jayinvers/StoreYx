@@ -1,0 +1,61 @@
+﻿@model StoreYx.Models.Article
+
+@{
+    ViewData["Title"] = "新增新闻";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">@ViewData["Title"]</h1>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label class="form-label" for="Title">标题</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="d-lg-flex">
+                <div class="form-group mb-3 flex-fill">
+                    <label class="form-label" for="Author">作者</label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 ms-lg-3 flex-fill">
+                    <label class="form-label" for="Tags">标签</label>
+                    <input asp-for="Tags" class="form-control" />
+                    <span asp-validation-for="Tags" class="text-danger"></span>
+                </div>
+
+            </div>
+                       <div class="form-group mb-3">
+                <label class="form-label" for="Description">摘要</label><span asp-validation-for="Description" class="text-danger"></span>
+                <textarea asp-for="Description" class="form-control" rows="3" type="text" id="BodyInputField">
+                </textarea>
+               </div>
+               
+            <link rel="stylesheet" href="/editormd/css/editormd.css" />
+            <div id="editor" class="form-group mb-3">
+                <label class="form-label" for="Body">正文 (Markdown 格式)</label>
+                <span asp-validation-for="Body" class="text-danger"></span>
+                <textarea asp-for="Body" style="display:none;" type="text"  id="BodyInputField">
+                </textarea>
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="新增并保存" class="btn btn-primary" />   <a asp-action="Index"  class="btn ms-3">返回列表</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+    @{await Html.RenderPartialAsync("_EditormdPartial");}
+}
+

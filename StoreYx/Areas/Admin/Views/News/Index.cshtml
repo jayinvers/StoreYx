@@ -1,0 +1,61 @@
+﻿@model IEnumerable<StoreYx.Models.Article>
+
+@{
+    ViewData["Title"] = "新闻中心";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">@ViewData["Title"]</h1>
+
+
+    <div class="btn-toolbar mb-2 mb-md-0">
+
+        <a asp-action="Create" class="btn btn-sm btn-outline-primary"><span data-feather="page"></span>新增新闻</a>
+    </div>
+
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                标题
+            </th>
+
+            <th width="160">
+                标签
+            </th>
+            <th width="80">
+                作者
+            </th>
+            <th width="120">
+                创建时间
+            </th>
+            <th width="160">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tags)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    <a asp-area="" asp-controller="News" asp-action="Details" target="_blank" asp-route-id="@item.Id">预览</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">删除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

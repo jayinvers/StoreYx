@@ -1,0 +1,19 @@
+﻿@model StoreYx.Models.Page
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["Banner"] = Model.Subtitle;
+    ViewData["Description"] = Model.Description;
+}
+<partial name="_Banner" />
+<div class="main">
+    <div class="row justify-content-md-center mb-5">
+        <div class="col-9 ">
+            <div class="content lh-base">
+                 @Html.Raw(Markdig.Markdown.ToHtml(String.IsNullOrEmpty(Model.MarkdownBody)?"None":Model.MarkdownBody))
+        
+            </div>
+
+        </div>
+
+    </div>
+</div>
